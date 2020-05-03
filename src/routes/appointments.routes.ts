@@ -8,11 +8,18 @@ const appointmentsRouter = Router();
 // instanciando a classe criada no repositories
 const appointmentsRepository = new AppointmentsRepository();
 
+// SoC: Separation of Concerns (Separação de preocupações)
+
 /**
  * Movido para o appointmentsRepository
  // Esta falando que o appointments é um array de Appointments do interface do models (TS)
  const appointments: Appointment[] = [];
  */
+appointmentsRouter.get('/', (request, response) => {
+  const appointments = appointmentsRepository.all();
+
+  return response.json(appointments);
+});
 
 appointmentsRouter.post('/', (request, response) => {
   const { provider, date } = request.body;
