@@ -51,7 +51,10 @@ appointmentsRouter.post('/', (request, response) => {
    */
 
   // dados trazidos no appointmentsRepository
-  const appointment = appointmentsRepository.create(provider, parsedDate);
+  const appointment = appointmentsRepository.create({
+    provider,
+    date: parsedDate,
+  });
 
   return response.json(appointment);
 });
